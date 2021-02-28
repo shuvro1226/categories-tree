@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faEdit, faTrash, faCaretRight } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,7 @@ import * as styles from './Category.module.css';
 import Categories from '../Categories';
 
 const Category = (props) => {
-    const [childVisible, setChildVisibility] = useState(false);
+    const [childVisible, setChildVisibility] = useState(true);
 
     const hasChildCategoory = props.category.children.length ? true : false;
 
@@ -43,15 +43,44 @@ const Category = (props) => {
                         {props.category.title}
                     </span>
                     <div className={styles.CategoryActions}>
-                        <Button size="sm" className="mx-1" onClick={() => props.showCategoryModal(props.category, true)}> 
-                            <FontAwesomeIcon icon={faPlus} /> 
-                        </Button>
-                        <Button size="sm" className="mx-1" onClick={() => props.showCategoryModal(props.category, false)}>
-                            <FontAwesomeIcon icon={faEdit} /> 
-                        </Button>
-                        <Button size="sm" variant="danger" className="mx-1" onClick={() => props.deleteCategory(props.category.id)}>
-                            <FontAwesomeIcon icon={faTrash} /> 
-                        </Button>
+                        <OverlayTrigger
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-top`}>
+                                    Add a Child
+                                </Tooltip>
+                            }
+                            >
+                            <Button size="sm" className="mx-1" onClick={() => props.showCategoryModal(props.category, true)}> 
+                                <FontAwesomeIcon icon={faPlus} /> 
+                            </Button>
+                        </OverlayTrigger>
+
+                        <OverlayTrigger
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-top`}>
+                                    Edit Child
+                                </Tooltip>
+                            }
+                            >
+                            <Button size="sm" className="mx-1" onClick={() => props.showCategoryModal(props.category, false)}>
+                                <FontAwesomeIcon icon={faEdit} /> 
+                            </Button>
+                        </OverlayTrigger>
+                        
+                        <OverlayTrigger
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-top`}>
+                                    Delete Child
+                                </Tooltip>
+                            }
+                            >
+                            <Button size="sm" variant="danger" className="mx-1" onClick={() => props.deleteCategory(props.category.id)}>
+                                <FontAwesomeIcon icon={faTrash} /> 
+                            </Button>
+                        </OverlayTrigger>                        
                     </div>
                 </div>
             </div>

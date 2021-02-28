@@ -1,3 +1,7 @@
 .categories-list ul {
     list-style-type: none;
 }
+
+.categories-list ul:first-child {
+    padding: 0;
+}

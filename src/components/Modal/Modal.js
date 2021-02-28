@@ -4,9 +4,9 @@ import { Modal, Button, Form } from 'react-bootstrap';
 const CategoryModal = (props) => {
     return (
         <Modal show={props.showModal} onHide={props.closeModal}>
-            {/* <Modal.Header closeButton>
-                <Modal.Title>Modal title</Modal.Title>
-            </Modal.Header> */}
+            <Modal.Header closeButton>
+                <Modal.Title>{props.modalTitle}</Modal.Title>
+            </Modal.Header>
 
             <Modal.Body>
                 <Form>

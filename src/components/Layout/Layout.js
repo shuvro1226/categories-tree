@@ -12,7 +12,7 @@ import Modal from '../Modal/Modal';
 class Layout extends Component {
     state = {
         title: '',
-        categories: [],
+        categories: localStorage.getItem('categories') ? JSON.parse(localStorage.getItem('categories')) : [],
         showModal: false,
         isCreate: true,
         category: null
@@ -75,6 +75,8 @@ class Layout extends Component {
                 const index = categories.findIndex(category => category.id === this.state.category.id);
                 categories.splice(index, 1, category);
             }
+
+            localStorage.setItem('categories', JSON.stringify(categories));
             
             this.setState({
                 categories: categories,
@@ -90,6 +92,9 @@ class Layout extends Component {
         const index = categories.findIndex(category => category.id === categoryId);
         categories.splice(index, 1);
         const filteredCategories = categories.filter(category => category.parent !== categoryId);
+
+        localStorage.setItem('categories', JSON.stringify(filteredCategories));
+
         this.setState({
             categories: filteredCategories
         })
@@ -112,17 +117,23 @@ class Layout extends Component {
             />
         }
 
+        let modalTitle = 'Create new category';
+        if (!this.state.isCreate) {
+            modalTitle = 'Edit category';
+        }
+
         return (
             <Row className="my-4 categories-list">
                 <Col xs="12">                    
                     <Button variant="success" onClick={() => this.showCategoryModal(null, true)}>
-                        <FontAwesomeIcon icon={faPlus} /> Add Category
+                        <FontAwesomeIcon icon={faPlus} /> Add New Category
                     </Button>
                 </Col>
-                <Col xs="12" className="my-4">
+                <Col xs="12" className="my-2">
                     {categoriesList}
                 </Col>
                 <Modal 
+                    modalTitle={modalTitle}
                     title={this.state.title}
                     showModal={this.state.showModal}
                     closeModal={this.onCloseModal}
