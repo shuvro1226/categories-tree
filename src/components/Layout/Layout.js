@@ -5,6 +5,7 @@ import { Row, Col, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
+import './Layout.css';
 import Categories from '../Categories/Categories';
 import Modal from '../Modal/Modal';
 
@@ -112,13 +113,13 @@ class Layout extends Component {
         }
 
         return (
-            <Row className="my-4">
+            <Row className="my-4 categories-list">
                 <Col xs="12">                    
                     <Button variant="success" onClick={() => this.showCategoryModal(null, true)}>
                         <FontAwesomeIcon icon={faPlus} /> Add Category
                     </Button>
                 </Col>
-                <Col xs="12">
+                <Col xs="12" className="my-4">
                     {categoriesList}
                 </Col>
                 <Modal 

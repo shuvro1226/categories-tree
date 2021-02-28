@@ -1,0 +1,31 @@
+.Caret {
+    line-height: 32px;
+    cursor: pointer;
+}
+
+.CategoryContainer .Category {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    max-width: 500px;
+}
+
+.Category span {
+    cursor: pointer;
+    margin-right: 10px;
+    line-height: 32px;
+}
+
+.CategoryActions {
+    margin-left: auto;
+}
+
+.CaretIcon {
+    transform: rotate(0deg);
+    transition: transform 0.2s linear;
+}
+
+.Open {
+    transform: rotate(90deg);
+    transition: transform 0.2s linear;
+}
